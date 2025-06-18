@@ -11,6 +11,7 @@ import CodeEditor from "@/components/code-editor"
 import OutputPanel from "@/components/output-panel"
 import InputPanel from "@/components/input-panel"
 import SettingsPanel from "@/components/settings-panel"
+import AdBanner from "@/components/ad-banner"
 import Link from "next/link"
 
 const defaultJavaCode = `public class Main {
@@ -244,6 +245,12 @@ export default function JavaJDoodleEditor() {
             <div className="hidden md:flex items-center space-x-4">
               <nav className="flex items-center space-x-4">
                 <Link
+                  href="/blog"
+                  className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  Blog
+                </Link>
+                <Link
                   href="/about"
                   className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
                 >
@@ -287,6 +294,13 @@ export default function JavaJDoodleEditor() {
           {isMobileMenuOpen && (
             <div className="md:hidden mt-4 pb-4 border-t pt-4">
               <nav className="flex flex-col space-y-3">
+                <Link
+                  href="/blog"
+                  className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Blog
+                </Link>
                 <Link
                   href="/about"
                   className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
@@ -339,10 +353,17 @@ export default function JavaJDoodleEditor() {
         </div>
       </header>
 
+      {/* Top Banner Ad */}
+      {process.env.NEXT_PUBLIC_GOOGLE_ADSENSE_ID && (
+        <div className="container mx-auto px-4 py-2">
+          <AdBanner adSlot="YOUR_TOP_BANNER_AD_SLOT" className="mx-auto" />
+        </div>
+      )}
+
       {/* Main Content */}
       <div className="flex-1 bg-background">
         <div className="container mx-auto px-4 py-6">
-          <div className="grid grid-cols-1 xl:grid-cols-4 gap-6 h-[calc(100vh-200px)]">
+          <div className="grid grid-cols-1 xl:grid-cols-4 gap-6 h-[calc(100vh-250px)]">
             {/* Code Editor Section */}
             <div className="xl:col-span-3">
               <Card className="h-full flex flex-col">
@@ -387,6 +408,9 @@ export default function JavaJDoodleEditor() {
 
             {/* Side Panel */}
             <div className="space-y-6 overflow-y-auto">
+              {/* Sidebar Ad */}
+              {process.env.NEXT_PUBLIC_GOOGLE_ADSENSE_ID && <AdBanner adSlot="YOUR_SIDEBAR_AD_SLOT" size="medium" />}
+
               {/* Settings Panel */}
               <SettingsPanel settings={settings} onChange={setSettings} />
 
@@ -436,6 +460,13 @@ export default function JavaJDoodleEditor() {
           </div>
         </div>
       </div>
+
+      {/* Bottom Banner Ad */}
+      {process.env.NEXT_PUBLIC_GOOGLE_ADSENSE_ID && (
+        <div className="container mx-auto px-4 py-2">
+          <AdBanner adSlot="YOUR_BOTTOM_BANNER_AD_SLOT" className="mx-auto" />
+        </div>
+      )}
     </div>
   )
 }

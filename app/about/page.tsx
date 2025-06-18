@@ -1,6 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Code, Users, Zap, Shield, Globe, Heart } from "lucide-react"
+import AdBanner from "@/components/ad-banner"
 import Link from "next/link"
 
 export default function AboutPage() {
@@ -18,6 +19,13 @@ export default function AboutPage() {
               Empowering developers to write, compile, and execute Java code seamlessly in the browser
             </p>
           </div>
+
+          {/* Top Ad */}
+          {process.env.NEXT_PUBLIC_GOOGLE_ADSENSE_ID && (
+            <div className="flex justify-center">
+              <AdBanner adSlot="YOUR_ABOUT_PAGE_AD_SLOT" size="large" />
+            </div>
+          )}
 
           {/* Mission */}
           <Card>
@@ -105,6 +113,13 @@ export default function AboutPage() {
               </div>
             </CardContent>
           </Card>
+
+          {/* Middle Ad */}
+          {process.env.NEXT_PUBLIC_GOOGLE_ADSENSE_ID && (
+            <div className="flex justify-center">
+              <AdBanner adSlot="YOUR_ABOUT_PAGE_MIDDLE_AD_SLOT" size="large" />
+            </div>
+          )}
 
           {/* Technology Stack */}
           <Card>
